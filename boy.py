@@ -135,8 +135,13 @@ class DashState:
     def do(boy):
         boy.frame = (boy.frame + 1) % 8
         boy.timer -= 1
+        boy.dash_time += 1
         boy.x += boy.velocity * 2
         boy.x = clamp(25, boy.x, 1600 - 25)
+
+        if boy.dash_time >= 100:
+            boy.dash_time = 0
+            boy.cur_state = RunState
 
     @staticmethod
     def draw(boy):
@@ -177,6 +182,7 @@ class Boy:
         self.velocity = 0
         self.frame = 0
         self.timer = 0
+        self.dash_time = 0
         self.event_que = []
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
