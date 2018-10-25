@@ -4,14 +4,16 @@ from ball import Ball
 import game_world
 
 # Boy Event
-RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SLEEP_TIMER, SPACE = range(6)
+RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SLEEP_TIMER, SPACE, DASH = range(7)
 
 key_event_table = {
     (SDL_KEYDOWN, SDLK_RIGHT): RIGHT_DOWN,
     (SDL_KEYDOWN, SDLK_LEFT): LEFT_DOWN,
     (SDL_KEYUP, SDLK_RIGHT): RIGHT_UP,
     (SDL_KEYUP, SDLK_LEFT): LEFT_UP,
-    (SDL_KEYDOWN, SDLK_SPACE): SPACE
+    (SDL_KEYDOWN, SDLK_SPACE): SPACE,
+    (SDL_KEYDOWN, SDLK_RSHIFT): DASH,
+    (SDL_KEYDOWN, SDLK_LSHIFT): DASH
 }
 
 
@@ -109,7 +111,7 @@ class SleepState:
             boy.image.clip_composite_draw(boy.frame * 100, 200, 100, 100,
                       -3.141592 / 2, '', boy.x + 25, boy.y - 25, 100, 100)
 
-
+class DashState:
 
 
 
